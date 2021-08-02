@@ -13,7 +13,7 @@ print(img.shape)                    # Full Screen: 1080 1920
 img_cv = img[59:490,832:1080]   # Tab Menu: X: 
 
 # Display Image
-#cv2.imshow('Image', imgCropped)
+#cv2.imshow('Image', img_cv)
 #cv2.waitKey(0)
 
 img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)

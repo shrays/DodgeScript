@@ -17,11 +17,6 @@ alpha = 3       # Contrast Multiplier
 beta = -200     # Brightness Addition
 final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
 
-# DISPLAY IMAGE
-
-#cv2.imshow('Image', final)
-#cv2.waitKey(0)
-
 # MANIPULATE STRINGS
 
 print(pytesseract.image_to_string(final))
@@ -29,9 +24,12 @@ names = [y for y in (x.strip() for x in pytesseract.image_to_string(final).split
 for x in range(len(names)):
     if names[x] == '0':
         print('test')
-
+print(names)
 #Remove spaces, anything with illegal characters, and copyright symbol
 
+# DISPLAY IMAGE
 
+cv2.imshow('Image', final)
+cv2.waitKey(0)
 
 

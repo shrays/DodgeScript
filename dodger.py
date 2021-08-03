@@ -45,11 +45,11 @@ class Player:
 # PULL IMAGE
 
 
-img = cv2.imread('img4.png')
+img = cv2.imread('img1.png')
 
 # TRANSFORM IMAGE
 
-img_cv = img[59:490,815:1080]   # Crop to Tab Menu 1/3:832 4:815  1:9/16, 3: 6/16, 4: 9/16
+img_cv = img[59:490,832:1080]   # Crop to Tab Menu 1/3:832 4:815  1:9/16, 3: 6/16, 4: 9/16
 img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
 alpha = 3       # Contrast Multiplier
 beta = -200     # Brightness Addition
@@ -61,7 +61,7 @@ final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 
 players = [Player(y) for y in (x.strip() for x in pytesseract.image_to_string(final).splitlines()) if y]
 for x in range(len(players)):
     players[x].name = players[x].name.replace('@','0')    # 0 @ confusion fix
-    players[x].name = players[x].name.translate({ord(c): None for c in ' ©?()[]!-—=+'})    # Remove blacklisted chars
+    players[x].name = players[x].name.translate({ord(c): None for c in ' .©?()[]!-—=+'})    # Remove blacklisted chars
     if players[x].name.startswith('0'):
         players[x].name = players[x].name[1:]
     #print(players[x].name)
@@ -74,7 +74,7 @@ for x in range(len(players)):
 
 # DISPLAY IMAGE
 
-#cv2.imshow('Image', final)
-#cv2.waitKey(0)
+cv2.imshow('Image', final)
+cv2.waitKey(0)
 
 

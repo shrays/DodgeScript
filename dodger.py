@@ -57,7 +57,7 @@ final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 
 
 # MANIPULATE STRINGS
 
-#print(pytesseract.image_to_string(final))
+print(pytesseract.image_to_string(final))
 players = [Player(y) for y in (x.strip() for x in pytesseract.image_to_string(final).splitlines()) if y]
 for x in range(len(players)):
     players[x].name = players[x].name.replace('@','0')    # 0 @ confusion fix

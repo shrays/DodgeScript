@@ -5,13 +5,14 @@ _A realtime, Hypixel Bedwars stats-grabber_
 ## Description
 DodgeScript is a Python project meant for grabbing Hypixel Bedwars stats from members of a lobby by simply screenshotting the tab menu player list. This means users can better understand the skills of their opponents or quickly know when to dodge into a different lobbybefore the round starts. The script works in a matter of seconds and uses Mojang and Hypixel's API to get the information.
 ## Installation
-You will need a Hypixel API key for running this, which can be obtained by running `/api` on the hypixel server.
-Installing DodgeScript is as simple as the following:
 ```sh
 git clone https://github.com/shrays/DodgeScript DodgeScript
 cd ./DodgeScript
 pip install -r requirements.txt
-export HYPIXEL_API_KEY="12345678-9abc-def0-1234-56789abcdef0" # <---- REPLACE WITH YOUR API KEY
+```
+Then, go into `config.yml` and add your Hypixel API key, which can be obtained by running `/api` on the hypixel server.
+```yml
+hypixel_api_key: "12345678-9abc-def0-1234-56789abcdef0" # <---- REPLACE WITH YOUR API KEY
 ```
 To run the program:
 ```sh

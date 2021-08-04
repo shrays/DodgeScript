@@ -13,6 +13,7 @@ import shutil
 import time
 import statistics
 
+
 test_img = os.getcwd() + os.sep + "sampleImages"
 
 key = ''
@@ -32,6 +33,7 @@ elif os.name == "nt": # windows
 
 if path == "":
     raise OSError("Operating system not supported")
+
 
 class Player:
 

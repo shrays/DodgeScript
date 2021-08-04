@@ -13,8 +13,8 @@ import shutil
 import time
 import statistics
 
-key = '324ddd0c-2350-435d-9610-eb4fd6f1ec9d'    # Hypixel in game /api
-path = '/Users/shrayswarup/Library/Application Support/minecraft/screenshots/'
+key = ''    # Hypixel in game /api
+path = '/Users/YOURPATH/Library/Application Support/minecraft/screenshots/' # Replace YOURPATH with computer name
 
 class Player:
     def __init__(self, name):
@@ -117,11 +117,7 @@ def text(final): # Cleans and sorts text
     # Print Data
     for x in range(len(players)):
         print(players[x].toString())
-
-    shutil.move(path + f, path + "UsedDodger/") # Moves image away from SS folder (UsedDodger file in SS)
-
-# PULL TEST IMAGE
-#img = cv2.imread('img1.png')
+    print('\n\n')
 
 while True: # Always Runs
     files = os.listdir(path) # Checks screenshots folders (.DS(mac), UsedDodger Folder, and Regular SS )
@@ -129,5 +125,8 @@ while True: # Always Runs
         time.sleep(1) # Lets image load into 
         for f in files:
             if f[0] == '2':
+                # INJECT SAMPLE IMAGE
+                #img = cv2.imread('/sampleImages/2Middle.png')
                 img = cv2.imread(os.path.expanduser(path + f))
                 text(imageRead(imageCrop(img)))
+                shutil.move(path + f, path + "UsedDodger/") # Moves image away from SS folder (UsedDodger file in SS)

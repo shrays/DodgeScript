@@ -157,7 +157,6 @@ while True: # Always Runs
         time.sleep(1) # Lets image load into 
         for f in files:
             if f[0] == '2':
-                print(path + f)
                 img = cv2.imread(os.path.expanduser(path + f))
                 text(imageRead(imageCrop(img)))
                 shutil.move(path + f, path + "UsedDodger/") # Moves image away from SS folder (UsedDodger file in SS)

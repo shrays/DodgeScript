@@ -100,9 +100,9 @@ def imageRead(crop):
 def text(final):
     # MANIPULATE STRINGS
 
-    print('RAW ===========================================')
-    print(pytesseract.image_to_string(final))
-    print('POST ==========================================')
+    #print('RAW ===========================================')
+    #print(pytesseract.image_to_string(final))
+    #print('POST ==========================================')
 
     players = [Player(y) for y in (x.strip() for x in pytesseract.image_to_string(final).splitlines()) if y]
     for x in range(len(players)):
@@ -110,12 +110,12 @@ def text(final):
         players[x].name = players[x].name.translate({ord(c): None for c in ' .©?()[]!-—=+'})    # Remove blacklisted chars
         if players[x].name.startswith('0'):
             players[x].name = players[x].name[1:]
-        print(players[x].name)
+        #print(players[x].name)
 
     # Print Data
 
-    #for x in range(len(players)):
-    #    print(players[x].toString())
+    for x in range(len(players)):
+        print(players[x].toString())
 
     shutil.move(path + f, path + "UsedDodger/")
 

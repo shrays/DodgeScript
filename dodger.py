@@ -14,7 +14,7 @@ import time
 import statistics
 
 key = ''    # Hypixel in game /api
-path = '/Users/YOURPATH/Library/Application Support/minecraft/screenshots/' # Replace YOURPATH with computer name
+path = str(os.environ['HOME']) + '/Library/Application Support/minecraft/screenshots/' # macOS Path
 
 class Player:
     def __init__(self, name):

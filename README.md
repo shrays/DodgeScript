@@ -3,7 +3,7 @@
 _A realtime, Hypixel Bedwars stats-grabber_
 
 ## Description
-DodgeScript is a Python project meant for grabbing Hypixel Bedwars stats from members of a lobby by simply screenshotting the player list. This means users can quickly determine whether the lobby is filled with sweaty players and promptly evacuate before the round starts. The script works in a matter of seconds and uses Mojang and Hypixel's API to get the information.
+DodgeScript is a Python project meant for grabbing Hypixel Bedwars stats from members of a lobby by simply screenshotting the tab menu player list. This means users can better understand the skills of their opponents or quickly know when to dodge into a different lobbybefore the round starts. The script works in a matter of seconds and uses Mojang and Hypixel's API to get the information.
 ## Installation
 Installing DodgeScript is as simple as the following:
 ```sh

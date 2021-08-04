@@ -11,6 +11,7 @@ from requests.api import request
 import os
 import shutil
 import time
+import statistics
 
 key = '324ddd0c-2350-435d-9610-eb4fd6f1ec9d'
 path = '/Users/shrayswarup/Library/Application Support/minecraft/screenshots/'
@@ -46,12 +47,44 @@ class Player:
             numTabs = 2
         tabs = '\t' * numTabs
         return 'NAME: ' + self.name + tabs + 'FKDR: ' + str(self.getFKDR()) + '\t\tUUID: ' + self.getUUID()
+def imageCrop(img):
+    # CONVERT TO GRAYSCALE, ADD CONTRAST
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
+    con1 = 20       # Contrast Multiplier
+    bright1 = -1000     # Brightness Addition
+    final = cv2.addWeighted(img_rgb, con1, np.zeros(img_rgb.shape, img_rgb.dtype), 0, bright1)
 
-def calculate():
+    # 2D LIST, PIXEL COLORS
+    print(type(int(final[65,1135])))
+    color = []
+    for i in range(355):
+        temp = []
+        for j in range(5):
+            temp.append(int(final[60 + 5*j, 1135-i]))
+        color.append(temp)
+
+    # MEAN OF COLUMNS OF 355 ROWS
+    #print(color)
+    value = []
+    for row in color:
+        value.append(statistics.mean(row))
+    #print(value)
+
+    # FIND CONTRAST DIFFERENCE
+    for i in range(len(value) - 1, 0, -1):
+        if value[i] + 100 < value[i-1]:
+            crop = i + 783
+            break
+    #print(crop)
+
+    crop = img[59:490,960 - (crop - 960) + 24:crop - 33]   # Crop to Tab Menu 
+    return crop
+
+def imageRead(crop):
     # TRANSFORM IMAGE
 
-    img_cv = img[59:490,832:1080]   # Crop to Tab Menu 1/3:832 4:815  1:9/16, 3: 6/16, 4: 9/16
-    img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
+    #img_cv = img[59:490,832:1080]   # Crop to Tab Menu 1/3:832 4:815  1:9/16, 3: 6/16, 4: 9/16
+    img_rgb = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
     alpha = 3       # Contrast Multiplier
     beta = -200     # Brightness Addition
     final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
@@ -62,6 +95,9 @@ def calculate():
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
 
+    return final
+
+def text(final):
     # MANIPULATE STRINGS
 
     print('RAW ===========================================')
@@ -78,9 +114,8 @@ def calculate():
 
     # Print Data
 
-    print()
-    for x in range(len(players)):
-        print(players[x].toString())
+    #for x in range(len(players)):
+    #    print(players[x].toString())
 
     shutil.move(path + f, path + "UsedDodger/")
 
@@ -96,7 +131,7 @@ while True:
             if f[0] == '2':
                 #print('starts with 2')
                 img = cv2.imread(os.path.expanduser(path + f))
-                calculate()
+                text(imageRead(imageCrop(img)))
                 #shutil.move(path + f, path + "UsedDodger/")
 
 

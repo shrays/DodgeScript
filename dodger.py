@@ -62,6 +62,10 @@ def imageCrop(img): # Detects width of tab list and crops
     bright1 = -1000     # Brightness Addition
     final = cv2.addWeighted(img_rgb, con1, np.zeros(img_rgb.shape, img_rgb.dtype), 0, bright1) # Add contrast/brightness
 
+    # DISPLAY IMAGE - STOPS PROGRAM
+    #cv2.imshow('Image', final)
+    #cv2.waitKey(0)
+    
     # 2D LIST, PIXEL COLORS
     color = []
     for i in range(355):

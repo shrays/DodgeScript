@@ -5,18 +5,35 @@ except ImportError:
     import Image
 import cv2
 import os
-import glob
-import os.path
+import shutil
+import time
 
-folder_path = r'~/Library/Application Support/minecraft/screenshots/'
-file_type = '\*png'
-files = glob.glob(folder_path + file_type)
-max_file = max(files, key=os.path.getctime)
+path = '/Users/shrayswarup/Library/Application Support/minecraft/screenshots/'
 
-print (max_file)
+def calculate():
+    img_cv = img[59:490,832:1080] 
+    shutil.move(path + f, path + "UsedDodger/")
 
-img = cv2.imread(os.path.expanduser('~/Library/Application Support/minecraft/screenshots/test.png'))
 
-cv2.imshow('Image', img)
-cv2.waitKey(10000)
-cv2.destroyAllWindows()
+while 'true':
+    files = os.listdir(path)
+    if len(files) > 3:
+        time.sleep(1)
+        for f in files:
+            print('CHECKING')
+            print(f)
+            if f[0] == '2':
+                print('starts with 2')
+
+                img = cv2.imread(os.path.expanduser(path + f))
+                calculate()
+                #cv2.imshow('Image', img)
+                #cv2.waitKey(1000)
+                #cv2.destroyAllWindows()
+
+
+
+        
+
+
+

@@ -11,7 +11,7 @@ Installing DodgeScript is as simple as the following:
 git clone https://github.com/shrays/DodgeScript DodgeScript
 cd ./DodgeScript
 pip install -r requirements.txt
-export HYPIXEL_API_KEY = 12345678-9abc-def0-1234-56789abcdef0 # <---- REPLACE WITH YOUR API KEY
+export HYPIXEL_API_KEY="12345678-9abc-def0-1234-56789abcdef0" # <---- REPLACE WITH YOUR API KEY
 ```
 To run the program:
 ```sh

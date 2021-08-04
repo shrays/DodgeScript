@@ -13,7 +13,7 @@ import shutil
 import time
 import statistics
 
-key = '324ddd0c-2350-435d-9610-eb4fd6f1ec9d'    # Hypixel in game /api key
+key = '324ddd0c-2350-435d-9610-eb4fd6f1ec9d'    # Hypixel in game /api
 path = '/Users/shrayswarup/Library/Application Support/minecraft/screenshots/'
 
 class Player:

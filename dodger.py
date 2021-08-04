@@ -30,12 +30,13 @@ class Player:
         if uuid == '0':
             return "\t"
         pData = requests.get('https://api.hypixel.net/player?uuid=' + uuid + '&key=' + key).json()
-        if pData['success'] and pData["player"] and pData["player"]["stats"] and pData["player"]["stats"]["Bedwars"]:
+        try:
+        #if pData['success'] and pData["player"] and pData["player"]["stats"] and pData["player"]["stats"]["Bedwars"]:
             deaths = int(pData["player"]["stats"]["Bedwars"]["final_deaths_bedwars"])
             kills = int(pData["player"]["stats"]["Bedwars"]["final_kills_bedwars"])
             # fours specific stat - four_four_final_deaths_bedwars
             return round(kills/deaths, 2)
-        else:
+        except:
             return "\t"
     def toString(self):
         numTabs = 4
@@ -57,8 +58,8 @@ def calculate():
 
     # DISPLAY IMAGE - STOPS PROGRAM
 
-    cv2.imshow('Image', final)
-    cv2.waitKey(0)
+    #cv2.imshow('Image', final)
+    #cv2.waitKey(0)
     #cv2.destroyAllWindows()
 
     # MANIPULATE STRINGS
@@ -83,14 +84,13 @@ def calculate():
 
     shutil.move(path + f, path + "UsedDodger/")
 
-
 # PULL IMAGE
 #img = cv2.imread('img1.png')
 
-while 'true':
+while True:
     files = os.listdir(path)
     if len(files) > 3:
-        time.sleep(1)
+        time.sleep(1) # Lets image load into 
         for f in files:
             #print(f)
             if f[0] == '2':
@@ -98,3 +98,18 @@ while 'true':
                 img = cv2.imread(os.path.expanduser(path + f))
                 calculate()
                 #shutil.move(path + f, path + "UsedDodger/")
+
+
+# PIXEL CROPPING
+
+# 1920 x 1080
+# Half X = 960
+
+# RIGHT MOST LIGHT TO DARK TRANSITION
+# X = 1055 1130
+# LEFT MOST (IN LIGHT)
+# X =  868  789
+
+# Y = 59/60 - 488/499
+# Head Width - 24 pixels
+# Wifi Width - 33 pixels

@@ -158,7 +158,7 @@ def text(final): # Cleans and sorts text
     # Print Data
     for x in range(len(players)):
         print(players[x].toString())
-    print('\n\n')
+    print('\n')
 
 while True: # Always Runs
     if len(sys.argv) >= 2 and sys.argv[1] == "--test":

@@ -21,9 +21,13 @@ key = ''
 with open('config.yml', 'r') as config_file:
     data = yaml.safe_load(config_file)
     if "hypixel_api_key" not in data or data["hypixel_api_key"] == "12345678-9abc-def0-1234-56789abcdef0":
-        raise KeyError("Hypixel API Key is not defined; Obtain a key from hypixel by running /api in the server, and put it in config.yml.")
+        raise KeyError("Hypixel API Key is not defined. Obtain a key from hypixel by running /api in the server and put it in config.yml")
     else:
         key = data["hypixel_api_key"]
+    if "gui_scale" not in data or (data["gui_scale"] != "normal" and data["gui_scale"] != "large"):
+        raise KeyError("Invalid GUI scale setting. Set gui_scale to 'normal' or 'large in config.yml")
+    else:
+        scale = data["gui_scale"]
 
 
 path = ""
@@ -97,13 +101,25 @@ def imageCrop(img): # Detects width of tab list and crops
     #cv2.waitKey(0)
 
     Xmid = int(final.shape[1] / 2) # Pixel length of half of X
+    if scale == 'normal':
+        Ytop = 39
+        Ybottom = 326
+        Yinc = 5
+        headWidth = 16
+        wifiWidth = 22
+    elif scale == 'large':
+        Ytop = 59
+        Ybottom = 489
+        Yinc = 2
+        headWidth = 24
+        wifiWidth = 33
 
     # 2D LIST, PIXEL COLORS
     color = []
     for i in range(355):
         temp = []
         for j in range(5):
-            temp.append(int(final[60 + 5*j, Xmid + 175-i])) # 175 constant, 960 + 175 = 1135
+            temp.append(int(final[Ytop + 1 + Yinc*j, Xmid + 175-i])) # 175 constant, 960 + 175 = 1135
         color.append(temp)
 
     # MEAN OF COLUMNS OF 355 ROWS
@@ -118,7 +134,7 @@ def imageCrop(img): # Detects width of tab list and crops
             break
 
     # CROP TO TAB MENU
-    crop = img[59:490,Xmid - (crop - Xmid) + 24:crop - 33]
+    crop = img[Ytop:Ybottom,Xmid - (crop - Xmid) + headWidth:crop - wifiWidth]
     # Y coord of 59 to 490 is dependent on GUI scaling being Large ^
     return crop
 
@@ -129,8 +145,8 @@ def imageRead(crop):    # Image to text
     final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
 
     # DISPLAY IMAGE - STOPS PROGRAM
-    #cv2.imshow('Image', final)
-    #cv2.waitKey(0)
+    cv2.imshow('Image', final)
+    cv2.waitKey(0)
 
     return final
 

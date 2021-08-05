@@ -1,1 +1,2 @@
-hypixel_api_key: "12345678-9abc-def0-1234-56789abcdef0" # <---- REPLACE WITH YOUR API KEY
+hypixel_api_key: "1232aa8e-555c-4b4d-b248-4483d65160af" # <--- REPLACE WITH YOUR API KEY
+gui_scale: "large" # <--- REPLACE WITH YOUR MC GUI SCALE ('normal' or 'large')

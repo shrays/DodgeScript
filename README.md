@@ -36,13 +36,12 @@ if players[x].name.startswith('0'): # Lunar client symbol fix
 ```
 from `dodger.py`
 
-Furthermore, because different texturepacks can have different fonts, different packs will yield different results. 
+Furthermore, because different texturepacks can have different fonts, different packs will yield different results. See `sampleImages` folder for quick font and sky hue examples.
 
 Pytesseract struggles with the default minecraft font so packs like one of the aquari colors will help text recognition: https://www.mediafire.com/folder/bplato6za4yix/Aquari_Recolours
 
-Sky brightness will also effect the accuracy of the image crop. The program is callibrated towards darker sky hues and was tested using the nighttime settings of this pack: http://www.mediafire.com/file/a0ehaeewwcgzfpj/!++++%C3%82%C2%A7bClouds+&+Planets+Night+Overlay.zip/file
+Sky brightness will also effect the accuracy of the image crop. The program is callibrated towards darker sky hues and was tested using the nighttime settings of this pack (Perpetual night achieved through Lunar Client Time Changer Mod): http://www.mediafire.com/file/a0ehaeewwcgzfpj/!++++%C3%82%C2%A7bClouds+&+Planets+Night+Overlay.zip/file
 
-Perpetual night was achieved through Lunar Client Time Changer Mod
 
 For more explantion, see issue: https://github.com/shrays/DodgeScript/issues/5
 ## Contributions

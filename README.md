@@ -13,6 +13,8 @@ brew install pytesseract
 ```
 *note Homebrew is needed to brew install pytesseract
 
+In the `screenshots` folder of .minecraft, move all current images into a folder that is located inside the `screenshots` folder. Still in the `screenshots` folder, add a folder called `UsedDodger`.
+
 Then, go into `config.yml` and add your Hypixel API key, which can be obtained by running `/api` on the hypixel server.
 ```yml
 hypixel_api_key: "12345678-9abc-def0-1234-56789abcdef0" # <---- REPLACE WITH YOUR API KEY

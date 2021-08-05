@@ -19,7 +19,7 @@ test_img = os.getcwd() + os.sep + "sampleImages"
 
 key = ''
 with open('config.yml', 'r') as config_file:
-    data = yaml.safe_load(file)
+    data = yaml.safe_load(config_file)
     if "hypixel_api_key" not in data or data["hypixel_api_key"] == "12345678-9abc-def0-1234-56789abcdef0":
         raise KeyError("Hypixel API Key is not defined; Obtain a key from hypixel by running /api in the server, and put it in config.yml.")
     else:

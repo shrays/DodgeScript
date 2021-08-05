@@ -81,6 +81,10 @@ class Player:
         tabs = '\t' * numTabs
         return 'NAME: ' + self.name + tabs + 'FKDR: ' + str(self.getFKDR()) + '\t\tUUID: ' + self.getUUID()
 
+def displayImage(img):  # Stops program when run
+    cv2.imshow('Image', img)
+    cv2.waitKey(0)
+
 def imageCrop(img): # Detects width of tab list and crops
     # PIXEL CROPPING
 
@@ -88,10 +92,7 @@ def imageCrop(img): # Detects width of tab list and crops
     con1 = 20           # Contrast Multiplier
     bright1 = -1000     # Brightness Addition
     final = cv2.addWeighted(img_rgb, con1, np.zeros(img_rgb.shape, img_rgb.dtype), 0, bright1) # Add contrast/brightness
-
-    # DISPLAY IMAGE - STOPS PROGRAM
-    #cv2.imshow('Image', final)
-    #cv2.waitKey(0)
+    #displayImage(final)
 
     Xmid = int(final.shape[1] / 2) # Pixel length of half of X
     if scale == 'normal':
@@ -136,11 +137,7 @@ def imageRead(crop):    # Image to text
     alpha = 3       # Contrast Multiplier
     beta = -200     # Brightness Addition
     final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
-
-    # DISPLAY IMAGE - STOPS PROGRAM
-    #cv2.imshow('Image', final)
-    #cv2.waitKey(0)
-
+    displayImage(final)
     return final
 
 def text(final): # Cleans and sorts text

@@ -43,5 +43,7 @@ Pytesseract struggles with the default minecraft font so packs like one of the a
 Sky brightness will also effect the accuracy of the image crop. The program is callibrated towards darker sky hues and was tested using the nighttime settings of this pack: http://www.mediafire.com/file/a0ehaeewwcgzfpj/!++++%C3%82%C2%A7bClouds+&+Planets+Night+Overlay.zip/file
 
 Perpetual night was achieved through Lunar Client Time Changer Mod
+
+For more explantion, see issue: https://github.com/shrays/DodgeScript/issues/5
 ## Contributions
 Feel free to fork this project for your own use. If you do, or if you find any issues, please use our [issues page](https://github.com/shrays/DodgeScript/issues) for reporting bugs or making suggestions. You can also submit pull requests at our [pull requests page](https://github.com/shrays/DodgeScript/pulls).

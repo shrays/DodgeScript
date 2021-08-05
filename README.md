@@ -29,7 +29,7 @@ To run the program:
 python dodger.py
 ```
 ## Caveats
-This script is not perfect. As it stands, there is usually only a ~50% success rate in correctly grabbing all the names from a lobby. This is because of imperfections in pytesseract, the image-to-text library used. This is a point that may be addressed with future updates. 
+This script is not perfect. As it stands, there is usually only a ~50% success rate in correctly grabbing all the names from a lobby or 8/16 players per game. This is because of imperfections in pytesseract, the image-to-text library used. This is a point that may be addressed with future updates. 
 ## Prefered Usage
 Currently the script is intended for `Lunar Client` in that it has filters to remove the lunar logo from nametag readings although it can be used without lunar client by removing
 ```yml

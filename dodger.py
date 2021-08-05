@@ -84,13 +84,6 @@ class Player:
 def imageCrop(img): # Detects width of tab list and crops
     # PIXEL CROPPING
 
-
-    # Screen Resolution - 1920 x 1080
-    # Head logo Width - 24 pixels
-    # Wifi logo Width - 33 pixels
-    # Brightness check within bounds of smallest X: 785 and largest X: 1135
-
-
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
     con1 = 20           # Contrast Multiplier
     bright1 = -1000     # Brightness Addition
@@ -145,8 +138,8 @@ def imageRead(crop):    # Image to text
     final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
 
     # DISPLAY IMAGE - STOPS PROGRAM
-    cv2.imshow('Image', final)
-    cv2.waitKey(0)
+    #cv2.imshow('Image', final)
+    #cv2.waitKey(0)
 
     return final
 

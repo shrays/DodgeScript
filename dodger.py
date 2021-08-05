@@ -97,13 +97,13 @@ def imageCrop(img): # Detects width of tab list and crops
     if scale == 'normal':
         Ytop = 39
         Ybottom = 326
-        Yinc = 5
+        Yinc = 2
         headWidth = 16
         wifiWidth = 22
     elif scale == 'large':
         Ytop = 59
         Ybottom = 489
-        Yinc = 2
+        Yinc = 5
         headWidth = 24
         wifiWidth = 33
 

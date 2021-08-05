@@ -95,13 +95,15 @@ def imageCrop(img): # Detects width of tab list and crops
     # DISPLAY IMAGE - STOPS PROGRAM
     #cv2.imshow('Image', final)
     #cv2.waitKey(0)
-    
+
+    Xmid = int(final.shape[1] / 2) # Pixel length of half of X
+
     # 2D LIST, PIXEL COLORS
     color = []
     for i in range(355):
         temp = []
         for j in range(5):
-            temp.append(int(final[60 + 5*j, 1135-i]))
+            temp.append(int(final[60 + 5*j, Xmid + 175-i])) # 175 constant, 960 + 175 = 1135
         color.append(temp)
 
     # MEAN OF COLUMNS OF 355 ROWS
@@ -112,10 +114,12 @@ def imageCrop(img): # Detects width of tab list and crops
     # FIND CONTRAST DIFFERENCE
     for i in range(len(value) - 1, 0, -1):
         if value[i] + 100 < value[i-1]:
-            crop = i + 783
+            crop = i + 175 + Xmid - 352
             break
 
-    crop = img[59:490,960 - (crop - 960) + 24:crop - 33]   # Crop to Tab Menu 
+    # CROP TO TAB MENU
+    crop = img[59:490,Xmid - (crop - Xmid) + 24:crop - 33]
+    # Y coord of 59 to 490 is dependent on GUI scaling being Large ^
     return crop
 
 def imageRead(crop):    # Image to text

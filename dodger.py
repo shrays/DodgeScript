@@ -85,12 +85,16 @@ def displayImage(img):  # Stops program when run
     cv2.imshow('Image', img)
     cv2.waitKey(0)
 
+def saveImage(img, name):
+    cv2.imwrite(path + "UsedDodger/" + name + '.png', img)
+
 def imageCrop(img): # Detects width of tab list and crops
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
     con1 = 20           # Contrast Multiplier
     bright1 = -1000     # Brightness Addition
     final = cv2.addWeighted(img_rgb, con1, np.zeros(img_rgb.shape, img_rgb.dtype), 0, bright1) # Add contrast/brightness
     #displayImage(final)
+    #saveImage(final, 'DetectCrop')
 
     Xmid = int(final.shape[1] / 2) # Pixel length of half of X
     if scale == 'normal':
@@ -125,6 +129,7 @@ def imageCrop(img): # Detects width of tab list and crops
 
     # CROP TO TAB MENU
     crop = img[Ytop:Ybottom,Xmid - (crop - Xmid) + headWidth:crop - wifiWidth]
+    #saveImage(crop, 'Cropped')
     return crop
 
 def imageRead(crop):    # Image to text
@@ -133,6 +138,7 @@ def imageRead(crop):    # Image to text
     beta = -200     # Brightness Addition
     final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
     #displayImage(final)
+    #saveImage(final, 'Text')
     return final
 
 def text(final): # Cleans and sorts text

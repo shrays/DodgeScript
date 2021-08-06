@@ -86,8 +86,6 @@ def displayImage(img):  # Stops program when run
     cv2.waitKey(0)
 
 def imageCrop(img): # Detects width of tab list and crops
-    # PIXEL CROPPING
-
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to Grayscale
     con1 = 20           # Contrast Multiplier
     bright1 = -1000     # Brightness Addition
@@ -115,12 +113,10 @@ def imageCrop(img): # Detects width of tab list and crops
         for j in range(5):
             temp.append(int(final[Ytop + 1 + Yinc*j, Xmid + 175-i])) # 175 constant, 960 + 175 = 1135
         color.append(temp)
-
     # MEAN OF COLUMNS OF 355 ROWS
     value = []
     for row in color:
         value.append(statistics.mean(row))
-
     # FIND CONTRAST DIFFERENCE
     for i in range(len(value) - 1, 0, -1):
         if value[i] + 100 < value[i-1]:
@@ -129,7 +125,6 @@ def imageCrop(img): # Detects width of tab list and crops
 
     # CROP TO TAB MENU
     crop = img[Ytop:Ybottom,Xmid - (crop - Xmid) + headWidth:crop - wifiWidth]
-    # Y coord of 59 to 490 is dependent on GUI scaling being Large ^
     return crop
 
 def imageRead(crop):    # Image to text
@@ -137,20 +132,20 @@ def imageRead(crop):    # Image to text
     alpha = 3       # Contrast Multiplier
     beta = -200     # Brightness Addition
     final = cv2.addWeighted(img_rgb, alpha, np.zeros(img_rgb.shape, img_rgb.dtype), 0, beta)
-    displayImage(final)
+    #displayImage(final)
     return final
 
 def text(final): # Cleans and sorts text
     #print('RAW ===========================================')
     #print(pytesseract.image_to_string(final))
     #print('POST ==========================================')
-
     players = [Player(y) for y in (x.strip() for x in pytesseract.image_to_string(final).splitlines()) if y]
     for x in range(len(players)):
         players[x].name = players[x].name.replace('@','0')     #@ to 0 confusion fix
         players[x].name = players[x].name.translate({ord(c): None for c in ' .©?()[]!-—=+'})    # Remove blacklisted chars
         if players[x].name.startswith('0'): # Lunar client symbol fix
             players[x].name = players[x].name[1:]
+        #print(players[x].name)
 
     # Print Data
     for x in range(len(players)):

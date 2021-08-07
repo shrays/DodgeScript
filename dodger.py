@@ -148,7 +148,7 @@ def text(final): # Cleans and sorts text
     players = [Player(y) for y in (x.strip() for x in pytesseract.image_to_string(final).splitlines()) if y]
     for x in range(len(players)):
         players[x].name = players[x].name.replace('@','0')     #@ to 0 confusion fix
-        players[x].name = players[x].name.translate({ord(c): None for c in ' .©?()[]!-—=+'})    # Remove blacklisted chars
+        players[x].name = players[x].name.translate({ord(c): None for c in ' .®©?()[]!-—=+'})    # Remove blacklisted chars
         if players[x].name.startswith('0'): # Lunar client symbol fix
             players[x].name = players[x].name[1:]
         #print(players[x].name)

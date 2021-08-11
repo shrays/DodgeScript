@@ -122,13 +122,13 @@ def imageCrop(img): # Detects width of tab list and crops
     for row in color:
         value.append(statistics.mean(row))
     # FIND CONTRAST DIFFERENCE
+
     for i in range(len(value) - 1, 0, -1):
         if value[i] + 100 < value[i-1]:
-            crop = i + 175 + Xmid - 352
+            cut = i + 175 + Xmid - 352
             break
-
     # CROP TO TAB MENU
-    crop = img[Ytop:Ybottom,Xmid - (crop - Xmid) + headWidth:crop - wifiWidth]
+    crop = img[Ytop:Ybottom,Xmid - (cut - Xmid) + headWidth:cut - wifiWidth]
     #saveImage(crop, 'Cropped')
     return crop
 
@@ -148,7 +148,7 @@ def text(final): # Cleans and sorts text
     players = [Player(y) for y in (x.strip() for x in pytesseract.image_to_string(final).splitlines()) if y]
     for x in range(len(players)):
         players[x].name = players[x].name.replace('@','0')     #@ to 0 confusion fix
-        players[x].name = players[x].name.translate({ord(c): None for c in ' .®©?()[]!-—=+'})    # Remove blacklisted chars
+        players[x].name = players[x].name.translate({ord(c): None for c in ' .®©?&()[]!#$%^*-—=+'}) # Remove blacklisted chars
         if players[x].name.startswith('0'): # Lunar client symbol fix
             players[x].name = players[x].name[1:]
         #print(players[x].name)
@@ -169,7 +169,11 @@ while True: # Always Runs
         for f in files:
             if f[0] == '2':
                 img = cv2.imread(os.path.expanduser(path + f))
-                text(imageRead(imageCrop(img)))
+                try: # If no tab list seen, handles negative crop
+                    text(imageRead(imageCrop(img)))
+                except:
+                    print('NO NAMELIST DETECTED\n')
+                
                 shutil.move(path + f, path + "UsedDodger/") # Moves image away from SS folder (UsedDodger file in SS)
 
 
